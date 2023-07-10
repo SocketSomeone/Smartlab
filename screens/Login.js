@@ -1,7 +1,7 @@
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native"
 import UIButton from "../components/UI/UIButton";
 import UIInput from "../components/UI/UIInput";
-import {useEffect, useRef, useState} from "react";
+import {useState} from "react";
 
 export default ({ navigation }) => {
     const [isEmailVerify, setIsEmailVerify] = useState(false)
@@ -14,7 +14,7 @@ export default ({ navigation }) => {
 
     const checkCode = () => {
         if (Number(code) === correctCode) {
-            return navigation.navigate('Profile')
+            return navigation.navigate('Home')
         }
 
         alert('Неверный код')

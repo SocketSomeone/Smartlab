@@ -5,7 +5,7 @@ export default ({tip, placeholder, onChangeText, maxLength, keyboardType }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.tip}>{tip}</Text>
-            <TextInput onChangeText={onChangeText} maxLength={maxLength} keyboardType={keyboardType} e style={styles.input} placeholder={placeholder} placeholderTextColor={Colors.Caption}/>
+            <TextInput onChangeText={onChangeText} maxLength={maxLength} keyboardType={keyboardType} style={styles.input} placeholder={placeholder} placeholderTextColor={Colors.Caption}/>
         </View>
     )
 
