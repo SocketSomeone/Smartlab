@@ -14,7 +14,7 @@ export default ({ navigation }) => {
 
     const checkCode = () => {
         if (Number(code) === correctCode) {
-            return navigation.navigate('Home')
+            return navigation.navigate('HomeTabs')
         }
 
         alert('Неверный код')

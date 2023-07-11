@@ -1,13 +1,4 @@
-import {
-    FlatList,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    useWindowDimensions,
-    View
-} from "react-native";
+import {FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View} from "react-native";
 import {useFetch} from "use-http";
 import {useEffect, useState} from "react";
 import UIInput from "../components/UI/UIInput";
@@ -78,60 +69,63 @@ export default () => {
     }
 
     return (
-        <SafeAreaView  style={[styles.container, {width}]}>
-                {/* Search */}
-                <UIInput placeholder="Искать анализы" onChangeText={updateSearch}/>
+        <SafeAreaView style={[styles.container, {width}]}>
+            {/* Search */}
+            <UIInput placeholder="Искать анализы" onChangeText={updateSearch}/>
 
 
-                {/* News */}
-                {!isSearch &&
-                    <View>
-                        <Text style={styles.header}>Акции и новости</Text>
-
-                        <FlatList
-                            data={news}
-                            showsHorizontalScrollIndicator={false}
-                            pagingEnabled={false}
-                            horizontal={true}
-                            keyExtractor={item => item.id}
-                            contentContainerStyle={{columnGap: 16}}
-                            renderItem={({item}) => <NewsItem item={item}/>}/>
-                    </View>
-                }
-
-
-                <Text style={styles.header}>Каталог анализов</Text>
-                {/* Categories */}
-
-                <View style={{marginHorizontal: 20}}>
-                    <FlatList data={categories} showsHorizontalScrollIndicator={false} pagingEnabled={true}
-                              horizontal={true}
-                              keyExtractor={item => item} contentContainerStyle={{columnGap: 8}}
-                              renderItem={({item}) => {
-                                  return (
-                                      <TouchableOpacity onPress={() => selectCategory(item)}>
-                                          <View
-                                              style={[styles.category, selectedCategory === item && styles.activeCategory]}>
-                                              <Text
-                                                  style={[styles.categoryText, selectedCategory === item && styles.activeCategoryText]}>{item}</Text>
-                                          </View>
-                                      </TouchableOpacity>
-                                  )
-                              }}/>
-                </View>
-
-                {/* Catalog */}
+            {/* News */}
+            {!isSearch &&
                 <View>
+                    <Text style={styles.header}>Акции и новости</Text>
 
-                    <FlatList data={filteredCatalog}
-
-                              showsVerticalScrollIndicator={false}
-                              pagingEnabled={false}
-                              bounces={false}
-                              keyExtractor={item => item.id}
-                              renderItem={({item}) => <CatalogItem item={item}/>}
-                    />
+                    <FlatList
+                        data={news}
+                        showsHorizontalScrollIndicator={false}
+                        pagingEnabled={false}
+                        horizontal={true}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={{columnGap: 8}}
+                        renderItem={({item}) => <NewsItem item={item}/>}/>
                 </View>
+            }
+
+
+            <Text style={styles.header}>Каталог анализов</Text>
+            {/* Categories */}
+
+            <View style={{marginHorizontal: 20}}>
+                <FlatList data={categories} showsHorizontalScrollIndicator={false} pagingEnabled={true}
+                          horizontal={true}
+                          keyExtractor={item => item} contentContainerStyle={{columnGap: 8}}
+                          renderItem={({item}) => {
+                              return (
+                                  <TouchableOpacity onPress={() => selectCategory(item)}>
+                                      <View
+                                          style={[styles.category, selectedCategory === item && styles.activeCategory]}>
+                                          <Text
+                                              style={[styles.categoryText, selectedCategory === item && styles.activeCategoryText]}>{item}</Text>
+                                      </View>
+                                  </TouchableOpacity>
+                              )
+                          }}/>
+            </View>
+
+            {/* Catalog */}
+            <View>
+                {filteredCatalog.length === 0
+                    ? <Text style={{textAlign: 'center', marginTop: 20}}>Ничего не найдено</Text>
+                    : <FlatList data={filteredCatalog}
+                                showsVerticalScrollIndicator={false}
+                                pagingEnabled={false}
+                                bounces={false}
+                                keyExtractor={item => item.id}
+                                renderItem={({item}) => <CatalogItem item={item}/>}
+                    />}
+
+
+            </View>
+
         </SafeAreaView>
     )
 }
