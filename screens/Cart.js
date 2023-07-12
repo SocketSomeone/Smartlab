@@ -5,7 +5,7 @@ import {removeAll} from "../redux/cart";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import UIButton from "../components/UI/UIButton";
 
-export default () => {
+export default ({ navigation }) => {
     const {cart} = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
@@ -42,8 +42,7 @@ export default () => {
                 <Text style={styles.price}>{total} ₽</Text>
             </View>
 
-            <UIButton title={'Оформить заказ'} outlined={isEmpty} disabled={isEmpty} onPress={() => {
-            }}/>
+            <UIButton title={'Оформить заказ'} outlined={isEmpty} disabled={isEmpty} onPress={() => navigation.navigate('Payment')}/>
         </View>
     )
 }

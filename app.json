@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#4D9CFF"
-      }
+      },
+      "package": "com.socketsomeone.Smartlab"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bf4f1de9-4e77-4721-a084-002937be102c"
+      }
     }
   }
 }

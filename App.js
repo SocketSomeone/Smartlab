@@ -12,6 +12,7 @@ import {BottomSheetModalProvider} from "@gorhom/bottom-sheet";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import Cart from "./screens/Cart";
+import Payment from "./screens/Payment";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,7 +25,7 @@ function App({navigation}) {
 
 
     const HomeTabs = () => (
-        <Tab.Navigator initialRouteName={"Анализы"} screenOptions={({route}) => ({
+        <Tab.Navigator screenOptions={({route}) => ({
             headerShown: false,
             tabBarStyle: {
                 paddingVertical: 5,
@@ -80,11 +81,12 @@ function App({navigation}) {
 
                         <NavigationContainer theme={{colors}}>
 
-                            <Stack.Navigator initialRouteName={"HomeTabs"}
+                            <Stack.Navigator initialRouteName={"Onboarding"}
                                              screenOptions={{statusBarColor: '#fff'}}>
                                 <Stack.Screen name="Onboarding" component={Onboarding} options={{headerShown: false}}/>
                                 <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
                                 <Stack.Screen name="HomeTabs" component={HomeTabs} options={{headerShown: false}}/>
+                                <Stack.Screen name="Payment" component={Payment} options={{headerShown: false}}/>
                             </Stack.Navigator>
 
                         </NavigationContainer>
